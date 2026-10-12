@@ -7,7 +7,7 @@ Script to add GApps and other stuff to Waydroid!
 ## Interactive terminal interface
 
 ```
-git clone https://github.com/casualsnek/waydroid_script
+git clone https://github.com/AbdurRauf-02/waydroid_script
 cd waydroid_script
 python3 -m venv venv
 venv/bin/pip install -r requirements.txt
@@ -25,7 +25,7 @@ sudo venv/bin/python3 main.py
 ## Command Line
 
 ```bash
-git clone https://github.com/casualsnek/waydroid_script
+git clone https://github.com/AbdurRauf-02/waydroid_script
 cd waydroid_script
 python3 -m venv venv
 venv/bin/pip install -r requirements.txt
@@ -83,7 +83,7 @@ Zygisk and modules like LSPosed should work now.
 
 If you want to update Magisk, Please use `Direct Install into system partition` or run this sript again.
 
-This script only focuses on Magisk installation, if you need more management, please check https://github.com/nitanmarcel/waydroid-magisk
+This script only focuses on Magisk installation, if you need more management, please check https://github.com/AbdurRauf-02/waydroid-magisk
 
 ## Install libndk arm translation 
 
@@ -194,7 +194,7 @@ Star this repository if you find this useful, if you encounter problem create an
 
 - Magisk installed: N/A
 
-Check [waydroid-magisk](https://github.com/nitanmarcel/waydroid-magisk)
+Check [waydroid-magisk](https://github.com/AbdurRauf-02/waydroid-magisk)
 
 ## Credits
 - [WayDroid](https://github.com/waydroid/waydroid)
