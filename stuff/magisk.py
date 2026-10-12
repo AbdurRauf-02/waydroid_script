@@ -1,4 +1,5 @@
 import gzip
+import hashlib
 import os
 import shutil
 import re
@@ -10,7 +11,10 @@ from tools import container
 class Magisk(General):
     id = "magisk delta"
     partition = "system"
-    dl_link = "https://github.com/mistrmochov/magiskdeltaorig/raw/main/app-release.apk"
+    dl_link = "https://github.com/AbdurRauf-02/waydroid_script/raw/main/app-release.apk"
+    # SHA-256 of the Kitsune 26.4 APK verified against HuskyDG's official build.
+    # Never skip this check: if it fails, the file is deleted and install aborts.
+    dl_sha256 = "00977cf637bafa9e3c01020e10869451614eec5099b337dd2f3a55e0452b0412"
     dl_file_name = "magisk.apk"
     extract_to = "/tmp/magisk_unpack"
     magisk_dir = os.path.join(partition, "etc", "init", "magisk")
@@ -58,6 +62,13 @@ on property:init.svc.zygote=stopped
             os.remove(self.download_loc)
         Logger.info("Downloading latest Magisk-Delta to {} now ...".format(self.download_loc))
         download_file(self.dl_link, self.download_loc)
+        with open(self.download_loc, "rb") as f:
+            got = hashlib.sha256(f.read()).hexdigest()
+        if got != self.dl_sha256:
+            os.remove(self.download_loc)
+            Logger.error("SHA-256 mismatch for Magisk APK: expected {}, got {}".format(self.dl_sha256, got))
+            raise RuntimeError("Magisk APK failed SHA-256 verification; aborting install")
+        Logger.info("Magisk APK SHA-256 verified")
 
     # require additional setup
     def setup(self):
